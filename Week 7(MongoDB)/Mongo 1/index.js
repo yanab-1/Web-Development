@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const app = express();
 const jwt = require('jsonwebtoken');
 const { UserModel, TodoModel } = require('./db');
@@ -6,7 +7,7 @@ const mongoose = require('mongoose');
 const { auth, JWT_SECRET } = require('./auth');
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://yashbansal2099_db_user:bhllahcBzDbvvuhW@cluster0.j42oqfd.mongodb.net/todo-yashbansal");
+mongoose.connect(process.env.MONGO_URL);
 
 app.post("/signup", async function(req, res) {
     const email = req.body.email;
